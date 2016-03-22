@@ -1,5 +1,5 @@
 # Triage Master Tool Overview
-Triage Master is a tool to facilitate in Defect/Bug Triage process for projects that use Microsoft VSTS (TFS 2012/2013/2015) for Application Lifecycle Management. 
+Triage Master is a tool to facilitate  Defect/Bug Triage process for projects that use Microsoft VSTS (TFS 2012/2013/2015) for Application Lifecycle Management. 
 
 Triage Master provides the following functionalities:
 
