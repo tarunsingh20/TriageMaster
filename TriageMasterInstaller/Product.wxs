@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:util='http://schemas.microsoft.com/wix/UtilExtension'>
+	<Product Id="93fd5815-42d9-457f-8a20-949873c50ade" Name="Triage Master" Language="1033" Codepage="1252" Version="1.1.0.0" Manufacturer="STaRZ" UpgradeCode="b20779cf-2a59-4485-b58d-1ca2774f2666">
+     
+  <Package Id='*' Keywords='Installer' Description="STaRZ's TriageMaster Installer" Manufacturer='STaRZ'
+     InstallerVersion='100' Languages='1033' Compressed='yes' SummaryCodepage='1252'/>
+    <!--<Property Id="MSIUSEREALADMINDETECTION" Value="1" />-->
+    <Media Id='1' Cabinet='Sample.cab' EmbedCab='yes' DiskPrompt='CD-ROM #1' />
+    <Property Id='DiskPrompt' Value="STaRZ's TriageMaster 1.1 Installation [1]" />
+
+  <Property Id="DESTINATIONDIRECTORY1" Value="STaRZ" />
+			<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">  
+        <Directory Id="INSTALLLOCATION" Name="STaRZ" FileSource=".\BuildSource">         
+           <Directory Id="TriageMaster" Name="!(loc.AssetName)" SourceName="TriageMaster" >            
+              
+              <Component Id="TriageMaster" Guid="91c296e3-55e9-48ed-9505-c8e836b432de">
+              <CreateFolder />
+              <CreateFolder Directory="INSTALLLOCATION">
+                <util:PermissionEx User="Users" GenericAll="yes" />
+              </CreateFolder>
+              <RemoveFile Id="PurgeAppFolder" Name="*.*" On="uninstall" />
+              </Component>
+             
+              <Component Id="TriageMaster2012" Guid="fb54e6ea-8142-4ab9-bd35-809ae771305c">
+              <File Id="TriageMaster_Exe2012" Name="TriageMaster.exe" DiskId="1" Source="BuildSource\TriageMaster\VS2012\TriageMaster.exe" />
+              <File Id="STaRZ.TFSLibrary.dll2012" Name="STaRZ.TFSLibrary.dll" DiskId="1" Source="BuildSource\TriageMaster\VS2012\STaRZ.TFSLibrary.dll" />
+              <File Id="Microsoft.TeamFoundation.WorkItemTracking.Client.DataStoreLoader.dll2012" Name="Microsoft.TeamFoundation.WorkItemTracking.Client.DataStoreLoader.dll" DiskId="1"  Source="BuildSource\TriageMaster\VS2012\DLLs\Microsoft.TeamFoundation.WorkItemTracking.Client.DataStoreLoader.dll" />
+              <Condition><![CDATA[INSTALLTYPE = 1]]></Condition>
+              </Component>
+             
+              <Component Id="TriageMaster2013" Guid="161bb9b2-93f1-46c4-89ff-940ff2ebae3a">
+              <File Id="TriageMaster_Exe2013" Name="TriageMaster.exe" DiskId="1" Source="BuildSource\TriageMaster\VS2013\TriageMaster.exe" />
+                <File Id="STaRZ.TFSLibrary.dll2013" Name="STaRZ.TFSLibrary.dll" DiskId="1" Source="BuildSource\TriageMaster\VS2013\STaRZ.TFSLibrary.dll" />
+                <File Id="Microsoft.TeamFoundation.WorkItemTracking.Client.DataStoreLoader.dll2013" Name="Microsoft.TeamFoundation.WorkItemTracking.Client.DataStoreLoader.dll" DiskId="1"  Source="BuildSource\TriageMaster\VS2013\DLLs\Microsoft.TeamFoundation.WorkItemTracking.Client.DataStoreLoader.dll" />
+              <Condition><![CDATA[INSTALLTYPE = 2]]></Condition>
+              </Component>
+
+             <Component Id="TriageMaster2015" Guid="92f0fb58-a357-4ced-8002-9daa76e1ce60">
+               <File Id="TriageMaster_Exe2015" Name="TriageMaster.exe" DiskId="1" Source="BuildSource\TriageMaster\VS2015\TriageMaster.exe" />
+               <File Id="STaRZ.TFSLibrary.dll2015" Name="STaRZ.TFSLibrary.dll" DiskId="1" Source="BuildSource\TriageMaster\VS2015\STaRZ.TFSLibrary.dll" />
+               
+               <File Id="Microsoft.TeamFoundation.Client.dll" Name="Microsoft.TeamFoundation.Client.dll" DiskId="1" Source="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.TeamFoundation.Client.dll" />
+               <File Id="Microsoft.TeamFoundation.Common.dll" Name="Microsoft.TeamFoundation.Common.dll" DiskId="1" Source="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.TeamFoundation.Common.dll" />
+               <File Id="Microsoft.TeamFoundation.Controls.dll" Name="Microsoft.TeamFoundation.Controls.dll" DiskId="1" Source="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.TeamFoundation.Controls.dll" />
+               <File Id="Microsoft.TeamFoundation.TestManagement.Client.dll" Name="Microsoft.TeamFoundation.TestManagement.Client.dll" DiskId="1" Source="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.TeamFoundation.TestManagement.Client.dll" />
+               <File Id="Microsoft.TeamFoundation.WorkItemTracking.Client.dll" Name="Microsoft.TeamFoundation.WorkItemTracking.Client.dll" DiskId="1" Source="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.TeamFoundation.WorkItemTracking.Client.dll" />
+               <File Id="Microsoft.TeamFoundation.WorkItemTracking.Controls.dll" Name="Microsoft.TeamFoundation.WorkItemTracking.Controls.dll" DiskId="1" Source="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.TeamFoundation.WorkItemTracking.Controls.dll" />
+               <File Id="Microsoft.WITDataStore32.dll" Name="Microsoft.WITDataStore32.dll" DiskId="1" Source="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.WITDataStore32.dll" />
+               <File Id="Microsoft.WITDataStore64.dll" Name="Microsoft.WITDataStore64.dll" DiskId="1" Source="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.WITDataStore64.dll" /> 
+               <File Id="Microsoft.mshtml.dll" Name="Microsoft.mshtml.dll" DiskId="1" Source="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.mshtml.dll" />
+               <File Id="Microsoft.TeamFoundation.Build.Client.dll" Name="Microsoft.TeamFoundation.Build.Client.dll" DiskId="1" Source="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.TeamFoundation.Build.Client.dll" />
+               <File Id="Microsoft.TeamFoundation.Core.WebApi.dll" Name="Microsoft.TeamFoundation.Core.WebApi.dll" DiskId="1" Source="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.TeamFoundation.Core.WebApi.dll" />
+               <File Id="Microsoft.TeamFoundation.TestManagement.Common.dll" Name="Microsoft.TeamFoundation.TestManagement.Common.dll" DiskId="1" Source="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.TeamFoundation.TestManagement.Common.dll" />
+               <File Id="Microsoft.TeamFoundation.WorkItemTracking.Client.DataStoreLoader.dll" Name="Microsoft.TeamFoundation.WorkItemTracking.Client.DataStoreLoader.dll" DiskId="1" Source="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.TeamFoundation.WorkItemTracking.Client.DataStoreLoader.dll" />
+               <File Id="Microsoft.TeamFoundation.WorkItemTracking.Client.QueryLanguage.dll" Name="Microsoft.TeamFoundation.WorkItemTracking.Client.QueryLanguage.dll" DiskId="1" Source="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.TeamFoundation.WorkItemTracking.Client.QueryLanguage.dll" />
+               <File Id="Microsoft.TeamFoundation.WorkItemTracking.Common.dll" Name="Microsoft.TeamFoundation.WorkItemTracking.Common.dll" DiskId="1" Source="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.TeamFoundation.WorkItemTracking.Common.dll" />
+               <File Id="Microsoft.TeamFoundation.WorkItemTracking.ControlsCore.dll" Name="Microsoft.TeamFoundation.WorkItemTracking.ControlsCore.dll" DiskId="1" Source="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.TeamFoundation.WorkItemTracking.ControlsCore.dll" />
+               <File Id="Microsoft.TeamFoundation.WorkItemTracking.Proxy.dll" Name="Microsoft.TeamFoundation.WorkItemTracking.Proxy.dll" DiskId="1" Source="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.TeamFoundation.WorkItemTracking.Proxy.dll" />
+               <File Id="Microsoft.VisualStudio.Services.Client.dll" Name="Microsoft.VisualStudio.Services.Client.dll" DiskId="1" Source="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.VisualStudio.Services.Client.dll" />
+               <File Id="Microsoft.VisualStudio.Services.Common.dll" Name="Microsoft.VisualStudio.Services.Common.dll" DiskId="1" Source="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.VisualStudio.Services.Common.dll" />
+               <File Id="Microsoft.VisualStudio.Services.WebApi.dll" Name="Microsoft.VisualStudio.Services.WebApi.dll" DiskId="1" Source="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.VisualStudio.Services.WebApi.dll" /> 
+               
+               
+               <Condition><![CDATA[INSTALLTYPE = 3]]></Condition>
+             </Component>
+             
+             <Component Id="DLLs" Guid="67387d74-0202-4551-abc6-efa18554e756">
+             <File Id="STaRZ.CryptoLibrary.dll" Name="STaRZ.CryptoLibrary.dll" DiskId="1" Source="BuildSource\DLLs\STaRZ.CryptoLibrary.dll" />               
+              <File Id="Xceed.Wpf.Toolkit.dll" Name="Xceed.Wpf.Toolkit.dll" DiskId="1" Source="BuildSource\DLLs\Xceed.Wpf.Toolkit.dll" />
+               <File Id="NEWTONSOFT.JSON.DLL" Name="Newtonsoft.Json.dll" DiskId="1"   Source="BuildSource\DLLs\Newtonsoft.Json.dll" />              
+               <File Id="MICROSOFT.WITDATASTORE.DLL" Name="Microsoft.WITDataStore.dll" DiskId="1"  Source="BuildSource\DLLs\Microsoft.WITDataStore.dll" />
+            </Component>
+          
+           </Directory>
+          
+            <Directory Id="Configuration" Name="!(loc.AssetName)" SourceName="Configuration">
+            <Component Id="Configuration" Guid="00ae732b-1559-43e9-8e06-7f831bdb3014">
+              <File Id="TriageMaster_Config" Name="TriageMaster.exe.config" DiskId="1" KeyPath="yes" Source="BuildSource\Configuration\TriageMaster.exe.config">
+                <Permission User="Users" Delete="no" FileAllRights="yes"/>
+              </File>
+            </Component>
+            </Directory>
+          
+          <Directory Id="DesktopFolder" Name="Desktop">
+            
+         <Component Id="ApplicationShortcutDesktop2012" Guid="7fde2b71-ee13-45a8-aaf7-805dd6daea1f">
+            <Shortcut Id="ApplicationDesktopShortcut2012"
+               Name="Triage Master"
+               Description="Shortcut to Triage Master"
+               Target="[#TriageMaster_Exe2012]"
+               Icon="Triage.ico" IconIndex="0"
+               WorkingDirectory="INSTALLLOCATION"/>
+
+            <RemoveFolder Id="DesktopFolder1" On="uninstall"/>
+
+            <RegistryValue
+              Root="HKCU"
+              Key="Software/MyAppName"
+              Name="installed"
+              Type="integer"
+              Value="1"
+              KeyPath="yes"/>
+            <Condition><![CDATA[INSTALLTYPE = 1]]></Condition>
+          </Component>
+
+          <Component Id="ApplicationShortcutDesktop2013" Guid="775e7969-70f8-4bf7-8d8d-db813554ab95">
+            <Shortcut Id="ApplicationDesktopShortcut2013"
+               Name="Triage Master"
+               Description="Shortcut to Triage Master"
+               Target="[#TriageMaster_Exe2013]"
+                Icon="Triage.ico" IconIndex="0"
+               WorkingDirectory="INSTALLLOCATION"/>
+
+            <RemoveFolder Id="DesktopFolder2" On="uninstall"/>
+
+            <RegistryValue
+              Root="HKCU"
+              Key="Software/MyAppName"
+              Name="installed"
+              Type="integer"
+              Value="1"
+              KeyPath="yes"/>
+            <Condition><![CDATA[INSTALLTYPE = 2]]></Condition>
+          </Component>
+
+            <Component Id="ApplicationShortcutDesktop2015" Guid="fbed5fa7-fb0f-4bd4-9520-5460507f48f5">
+              <Shortcut Id="ApplicationDesktopShortcut2015"
+                 Name="Triage Master"
+                 Description="Shortcut to Triage Master"
+                 Target="[#TriageMaster_Exe2015]"
+                  Icon="Triage.ico" IconIndex="0"
+                 WorkingDirectory="INSTALLLOCATION"/>
+
+              <RemoveFolder Id="DesktopFolder3" On="uninstall"/>
+
+              <RegistryValue
+                Root="HKCU"
+                Key="Software/MyAppName"
+                Name="installed"
+                Type="integer"
+                Value="1"
+                KeyPath="yes"/>
+              <Condition><![CDATA[INSTALLTYPE = 3]]></Condition>
+            </Component>
+
+          </Directory>
+			</Directory>
+		</Directory>
+  </Directory>
+    
+       <Feature Id='CommonFiles' Level='1'>
+      <ComponentRef  Id='Configuration' />
+         <ComponentRef Id='TriageMaster'/>
+      <ComponentRef Id='DLLs'/>
+    </Feature>
+    
+    <Feature Id='TFS2012' Level='1'>
+      <ComponentRef Id='TriageMaster2012' />
+      <ComponentRef  Id='ApplicationShortcutDesktop2012' />
+    </Feature>
+
+    <Feature Id='TFS2013' Level='1'>
+      <ComponentRef Id='TriageMaster2013' />
+      <ComponentRef  Id='ApplicationShortcutDesktop2013' />
+    </Feature>
+
+    <Feature Id='TFS2015' Level='1'>
+      <ComponentRef Id='TriageMaster2015' />
+      <ComponentRef  Id='ApplicationShortcutDesktop2015' />
+    </Feature>
+  
+   <WixVariable Id="WixUIDialogBmp" Value="Binary\TriageMasterUIDialog.bmp" />
+    <WixVariable Id="WixUIBannerBmp" Value="Binary\TriageMasterBanner.bmp" />    
+    
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLLOCATION" />
+  
+  <UIRef Id="TriageMasterUI_InstallDir" />
+    
+  <!-- This is to include any translated (localized) Error or ProgressText elements. -->
+    <UIRef Id="WixUI_ErrorProgressText" />
+  
+  <UI>
+      <Publish Dialog="TriageMasterExitDialog"
+        Control="Finish"
+        Event="DoAction"
+        Value="LaunchApplication"><![CDATA[(TRIAGEMASTEROFFERINGCHECKBOX = 1) and (NOT Installed)]]></Publish>
+    </UI> 
+  
+<Property Id="TRIAGEMASTEROFFERINGCHECKBOXTEXT" Value="!(loc.LaunchAssetMessage)!(loc.AssetName)" />
+    <Property Id="TRIAGEMASTEROFFERINGCHECKBOX" Value="1" /> 
+    <!-- Step 3: Include the custom action -->
+
+    <Property Id="WixShellExecTarget" Value="[INSTALLLOCATION]Triage Master\TriageMaster.exe" />
+    <CustomAction Id="LaunchApplication" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes" />
+
+    <!-- Set the TCImportExport offering's icon which is required to appear in "Add or Remove Programs" program list -->
+    <Icon Id="Triage.ico" SourceFile="Binary\Triage.ico"/>
+    <Property Id="ARPPRODUCTICON" Value="Triage.ico" />
+    <!-- Define the UI properties of MSI #End --> 
+</Product>
+</Wix>

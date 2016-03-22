@@ -1,0 +1,208 @@
+﻿<Window x:Class="TriageMaster.Windows.FindingRelatedBugWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Common="clr-namespace:TriageMaster.Common"
+        xmlns:Control="clr-namespace:TriageMaster.Control"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        Icon="/Icons/Triage.ico"
+        Title="Find related defects/bugs" MinHeight="500" MinWidth="700" HorizontalAlignment="Stretch" ResizeMode="CanResize" VerticalAlignment="Stretch"  WindowStartupLocation="CenterScreen" ShowInTaskbar="True" Closed="Window_Closed" Loaded="Window_Loaded">
+    <Window.Resources>
+        <Common:BugMatchingConverter x:Key="bugMatchingConverter"/>
+        <RoutedUICommand x:Key="SaveCommand"/>
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="{StaticResource SaveCommand}" Executed="btnSaveWorkItemDetails_Click"/>
+    </Window.CommandBindings>
+    <Window.InputBindings>
+        <KeyBinding Key="S" Modifiers="Control" Command="{StaticResource SaveCommand}" />
+    </Window.InputBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="50"/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="lblMessage" Grid.Column="0" Margin="10,5" FontWeight="Bold" FontSize="14" Foreground="Black"/>
+        <Button Grid.Column="2" Height="30" Width="35" x:Name="btnLinkItems"  ToolTip="Link to An Existing Item" Click="btnLinkItems_Click" IsEnabled="False" HorizontalAlignment="Right" Margin="5">
+            <Image Source="/icons/Link.png" Height="35" Margin="-12" OpacityMask="White" Width="40"></Image>
+        </Button>
+        <Button Grid.Column="1" Height="30" Width="35" x:Name="btnUpdateWorkItemDetails"  ToolTip="Update Multiple Fields" Click="btnUpdateWorkItemDetails_Click" IsEnabled="False" HorizontalAlignment="Right" Margin="5">
+            <Image Source="/icons/Modify.png" Height="35" Margin="-12" OpacityMask="White" Width="40"></Image>
+        </Button>
+        </Grid>
+        
+        <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <ScrollViewer  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <DataGrid 
+                          x:Name="dgWIs"
+                          BorderBrush="Gray"
+                          BorderThickness="1.1"
+                          AutoGenerateColumns="False"
+                          CanUserAddRows="False"
+                          CanUserDeleteRows="False"
+                          CanUserResizeRows="False"
+                          RowHeaderWidth="0"              
+                          CanUserSortColumns="True"
+                          ScrollViewer.CanContentScroll="True"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto"
+                          ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                          SelectionUnit="FullRow" 
+                          SelectionMode="Extended"
+                          SelectionChanged="dgWIs_SelectionChanged" 
+                          MouseRightButtonUp="dgWIs_MouseRightButtonUp"                         
+                          >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" 
+                                            Binding="{Binding Path=Id, Mode=TwoWay}"                                                                                                                                    
+                                            Width="Auto"
+                                            FontSize="12"
+                                            MinWidth="30"
+                                            >
+                        <DataGridTextColumn.ElementStyle>
+                            <Style>
+                                <Setter Property="TextBlock.Cursor" Value="Hand" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Title"
+                                    Binding="{Binding Path=Title, Mode=OneWay}" 
+                                    Width="Auto"
+                                    FontSize="12"
+                                    MinWidth="350"
+                                    MaxWidth="600"
+                                   >
+                        <DataGridTextColumn.ElementStyle>
+                            <Style>
+                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Matching(%)"
+                                    Binding="{Binding Path=Matching, Mode=OneWay}"                                   
+                                    Width="Auto"
+                                    FontSize="12"
+                                    MinWidth="0"
+                                    CanUserSort="False"
+                                    >
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="Background">
+                                    <Setter.Value>
+                                        <Binding Path="Matching"  Converter="{StaticResource bugMatchingConverter}">
+                                        </Binding>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>                        
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="State"
+                                    Binding="{Binding Path=State, Mode=OneWay}"                                   
+                                    Width="Auto"
+                                    FontSize="12"
+                                    MinWidth="100"
+                                    >
+                        <DataGridTextColumn.ElementStyle>
+                            <Style>
+                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Created Date"
+                                    Binding="{Binding Path=CreatedDate, Mode=OneWay}"
+                                    Width="Auto"
+                                    FontSize="12"
+                                    MinWidth="150"
+                                    >
+                        <DataGridTextColumn.ElementStyle>
+                            <Style>
+                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Severity"
+                                    Binding="{Binding Path=Severity, Mode=OneWay}"
+                                    Width="Auto"
+                                    FontSize="12"
+                                    MinWidth="100"
+                                    >
+                        <DataGridTextColumn.ElementStyle>
+                            <Style>
+                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Priority" 
+                                    Binding="{Binding Path=Priority, Mode=OneWay}"                                   
+                                    Width="Auto"
+                                    FontSize="12"
+                                    MinWidth="100"                                 
+                                   >
+                        <DataGridTextColumn.ElementStyle>
+                            <Style>
+                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Assigned To"
+                                    Binding="{Binding Path=AssignedTo, Mode=OneWay}"
+                                    Width="*"
+                                    FontSize="12"
+                                    MinWidth="200"                                    
+                                    >
+                        <DataGridTextColumn.ElementStyle>
+                            <Style>
+                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    
+                </DataGrid.Columns>
+                <DataGrid.ContextMenu>
+                    <ContextMenu  Background="Gray">
+                        <MenuItem Header="Link to An Existing Item..." x:Name="cmLinkToExistingItem" Click="cmLinkToExistingItem_Click" IsEnabled="False">
+                            <MenuItem.Icon>
+                                <Image Source="/icons/Link.png" Width="24" Height="24" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <Separator/>
+                        <MenuItem Header="Update Multiple Fields..." x:Name="cmUpdateWorkItemDetails" Click="cmUpdateWorkItemDetails_Click" IsEnabled="False">
+                            <MenuItem.Icon>
+                                <Image Source="/icons/Modify.png" Width="24" Height="24"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+            </DataGrid>
+        </ScrollViewer>
+            <xctk:BusyIndicator x:Name="ProgressBar" HorizontalAlignment="Center" VerticalAlignment="Bottom"  Margin="25" IsBusy="False"/>
+        </Grid>
+
+        <Grid  Grid.Row="2" x:Name="workItemDetailsHeader">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="60"/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="lblTriageComment" Content="Triage Comment :" Grid.Column="0" VerticalAlignment="Center" Foreground="Black" Margin="10"/>
+            <TextBox x:Name="txtTriageComment" Grid.Column="1"  Margin="5,10" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" MaxLength="300"/>
+            <Button Height="30" Width="35" x:Name="btnSaveWorkItemDetails" Click="btnSaveWorkItemDetails_Click" ToolTip="Save changes"
+                    HorizontalAlignment="Right" Margin="5"  IsEnabled="False" Grid.Column="2">
+                <Image Source="/icons/save2.png" Height="40" Margin="-12" OpacityMask="White" Width="42"></Image>
+            </Button>
+        </Grid>
+
+        
+        <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Control:WITControl x:Name="witControl"/>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Window>

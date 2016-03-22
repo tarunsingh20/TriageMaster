@@ -1,0 +1,12 @@
+﻿<Window x:Class="TriageMaster.ProgressBarControl.ProgressDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"     
+        ShowInTaskbar="False"
+        Title="In Progress" Height="100" MinHeight="100" MinWidth="100" ResizeMode="NoResize" 
+        WindowStyle="None" WindowStartupLocation="CenterOwner" Width="300" SizeToContent="WidthAndHeight" >
+    <Grid Margin="10">
+        <TextBlock x:Name="TextLabel" Text="Loading..." TextTrimming="CharacterEllipsis" />
+        <TextBlock x:Name="SubTextLabel" Margin="0 18 0 0" Text="" FontStyle="Italic" Visibility="Collapsed" TextTrimming="CharacterEllipsis" />
+        <ProgressBar x:Name="ProgressBar" Margin="0,20,0,0" IsIndeterminate="True" Height="20" />
+    </Grid>
+</Window>

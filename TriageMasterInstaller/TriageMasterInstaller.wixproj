@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>3.7</ProductVersion>
+    <ProjectGuid>a036e306-c8a2-4aa8-b196-ef1169002362</ProjectGuid>
+    <SchemaVersion>2.0</SchemaVersion>
+    <OutputName>TriageMasterInstaller</OutputName>
+    <OutputType>Package</OutputType>
+    <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' AND '$(MSBuildExtensionsPath32)' != '' ">$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
+    <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <DefineConstants>Debug</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Product.wxs" />
+    <Compile Include="TriageMasterExitDialog.wxs" />
+    <Compile Include="TriageMasterUI_InstallDir.wxs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BuildSource" />
+    <Folder Include="BuildSource\Configuration" />
+    <Folder Include="BuildSource\DLLs" />
+    <Folder Include="BuildSource\TriageMaster" />
+    <Folder Include="BuildSource\TriageMaster\VS2012\DLLs" />
+    <Folder Include="BuildSource\TriageMaster\VS2013\DLLs" />
+    <Folder Include="BuildSource\TriageMaster\VS2015" />
+    <Folder Include="BuildSource\TriageMaster\VS2013" />
+    <Folder Include="BuildSource\TriageMaster\VS2012" />
+    <Folder Include="Binary" />
+    <Folder Include="BuildSource\TriageMaster\VS2015\DLLs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Strings_enus.wxl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Binary\AvaUIBannerBmp.bmp" />
+    <Content Include="Binary\AvaUIDialogBmp.bmp" />
+    <Content Include="Binary\LicenseAgreement.rtf" />
+    <Content Include="Binary\Triage.ico" />
+    <Content Include="Binary\TriageMasterBanner.bmp" />
+    <Content Include="Binary\TriageMasterUIDialog.bmp" />
+    <Content Include="BuildSource\Configuration\TriageMaster.exe.config" />
+    <Content Include="BuildSource\DLLs\Microsoft.WITDataStore.dll" />
+    <Content Include="BuildSource\DLLs\Newtonsoft.Json.dll" />
+    <Content Include="BuildSource\DLLs\STaRZ.CryptoLibrary.dll" />
+    <Content Include="BuildSource\DLLs\Xceed.Wpf.Toolkit.dll" />
+    <Content Include="BuildSource\TriageMaster\VS2012\DLLs\Microsoft.TeamFoundation.WorkItemTracking.Client.DataStoreLoader.dll" />
+    <Content Include="BuildSource\TriageMaster\VS2012\STaRZ.TFSLibrary.dll" />
+    <Content Include="BuildSource\TriageMaster\VS2012\TriageMaster.exe" />
+    <Content Include="BuildSource\TriageMaster\VS2013\DLLs\Microsoft.TeamFoundation.WorkItemTracking.Client.DataStoreLoader.dll" />
+    <Content Include="BuildSource\TriageMaster\VS2013\STaRZ.TFSLibrary.dll" />
+    <Content Include="BuildSource\TriageMaster\VS2013\TriageMaster.exe" />
+    <Content Include="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.mshtml.dll" />
+    <Content Include="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.TeamFoundation.Build.Client.dll" />
+    <Content Include="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.TeamFoundation.Client.dll" />
+    <Content Include="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.TeamFoundation.Common.dll" />
+    <Content Include="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.TeamFoundation.Controls.dll" />
+    <Content Include="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.TeamFoundation.Core.WebApi.dll" />
+    <Content Include="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.TeamFoundation.TestManagement.Client.dll" />
+    <Content Include="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.TeamFoundation.TestManagement.Common.dll" />
+    <Content Include="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.TeamFoundation.WorkItemTracking.Client.DataStoreLoader.dll" />
+    <Content Include="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.TeamFoundation.WorkItemTracking.Client.dll" />
+    <Content Include="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.TeamFoundation.WorkItemTracking.Client.QueryLanguage.dll" />
+    <Content Include="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.TeamFoundation.WorkItemTracking.Common.dll" />
+    <Content Include="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.TeamFoundation.WorkItemTracking.Controls.dll" />
+    <Content Include="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.TeamFoundation.WorkItemTracking.ControlsCore.dll" />
+    <Content Include="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.TeamFoundation.WorkItemTracking.Proxy.dll" />
+    <Content Include="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.VisualStudio.Services.Client.dll" />
+    <Content Include="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.VisualStudio.Services.Common.dll" />
+    <Content Include="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.VisualStudio.Services.WebApi.dll" />
+    <Content Include="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.WITDataStore32.dll" />
+    <Content Include="BuildSource\TriageMaster\VS2015\DLLs\Microsoft.WITDataStore64.dll" />
+    <Content Include="BuildSource\TriageMaster\VS2015\STaRZ.TFSLibrary.dll" />
+    <Content Include="BuildSource\TriageMaster\VS2015\TriageMaster.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <WixExtension Include="WixUtilExtension">
+      <HintPath>$(WixExtDir)\WixUtilExtension.dll</HintPath>
+      <Name>WixUtilExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixUIExtension">
+      <HintPath>$(WixExtDir)\WixUIExtension.dll</HintPath>
+      <Name>WixUIExtension</Name>
+    </WixExtension>
+  </ItemGroup>
+  <Import Project="$(WixTargetsPath)" />
+  <!--
+	To modify your build process, add your task inside one of the targets below and uncomment it.
+	Other similar extension points exist, see Wix.targets.
+	<Target Name="BeforeBuild">
+	</Target>
+	<Target Name="AfterBuild">
+	</Target>
+	-->
+</Project>
