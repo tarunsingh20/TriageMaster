@@ -9,6 +9,8 @@ Triage Master provides the following functionalities:
 4. Ability to find related defect/bugs using smart string matching algorithms and fuzzy logic. 
 5. Ability to export the defect/bug report to excel.
 
+![alt tag](https://cloud.githubusercontent.com/assets/16422549/14552102/9915c1d4-02f8-11e6-8e46-1e9c3aada4d5.png)
+
 Refer to User Guide available in the release section for more information on how to install and use the tool
 
 # Asset BOM
